@@ -1,0 +1,21 @@
+<div class="selector-container">
+  <h2>Slides</h2>
+  @if (isLoading){
+  <div class="spinner">Loading...</div>
+  } @else{
+  <div class="scroll-list">
+    @for (item of slides; track item){
+    <div
+      (click)="selectItem(item)"
+      [class.selected]="selectedSlide === item"
+      class="list-item"
+    >
+      {{ item }}
+    </div>
+
+    }
+  </div>
+  }
+
+  <button (click)="onSubmit()" class="submit-btn">Analyze</button>
+</div>

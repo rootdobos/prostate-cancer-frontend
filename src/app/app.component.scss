@@ -1,0 +1,20 @@
+.page-layout {
+  margin: 0;
+  display: flex;
+  height: 100vh; // full height layout if needed
+
+  .left-panel {
+    flex: 2;
+    max-width: 20%; // optional, restrict too-wide left panel
+    min-width: 200px; // ensure it doesn't get too small
+    background-color: #f9f9f9;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .right-panel {
+    flex: 5;
+    padding: 2rem;
+    overflow: auto;
+  }
+}

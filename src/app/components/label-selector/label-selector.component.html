@@ -1,0 +1,14 @@
+<div class="label-buttons">
+  <h2>Labels</h2>
+  <div class="label-buttons-container">
+    @for (label of buttonLabels; track label){
+    <button
+      (click)="onButtonClick(label)"
+      [class.selected]="label === selectedButton()"
+      [ngStyle]="{ borderColor: buttonColors[label] }"
+    >
+      {{ label }}
+    </button>
+    }
+  </div>
+</div>
