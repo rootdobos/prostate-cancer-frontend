@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SlideService } from '../../services/slide.service';
 import { FormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-slide-selector',
@@ -9,11 +10,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './slide-selector.component.scss',
 })
 export class SlideSelectorComponent implements OnInit {
-  selectedSlide: string = '';
+  slideService = inject(SlideService);
+  selectedSlide = toSignal(this.slideService.getSelectedSlide());
   slides: string[] = [];
   isLoading = true;
-  constructor(private slideService: SlideService) {}
-
+  isAnalyzing = toSignal(this.slideService.getIsAnalyzing());
   ngOnInit(): void {
     this.slideService.getSlides().subscribe({
       next: (data) => {
@@ -28,10 +29,10 @@ export class SlideSelectorComponent implements OnInit {
   }
 
   selectItem(item: string): void {
-    this.selectedSlide = item;
+    this.slideService.setSelectedSlide(item);
   }
 
   onSubmit(): void {
-    this.slideService.callSlideProcessing(this.selectedSlide);
+    this.slideService.callSlideProcessing();
   }
 }

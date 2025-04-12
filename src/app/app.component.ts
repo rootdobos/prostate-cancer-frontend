@@ -4,10 +4,11 @@ import { SlideService } from './services/slide.service';
 import { FormsModule } from '@angular/forms';
 import { SlideSelectorComponent } from './components/slide-selector/slide-selector.component';
 import { LabelSelectorComponent } from './components/label-selector/label-selector.component';
+import { SlideViewerComponent } from './components/slide-viewer/slide-viewer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SlideSelectorComponent, LabelSelectorComponent, RouterOutlet],
+  imports: [SlideSelectorComponent, LabelSelectorComponent, SlideViewerComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

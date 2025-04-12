@@ -7,7 +7,7 @@
     @for (item of slides; track item){
     <div
       (click)="selectItem(item)"
-      [class.selected]="selectedSlide === item"
+      [class.selected]="selectedSlide() === item"
       class="list-item"
     >
       {{ item }}
@@ -17,5 +17,7 @@
   </div>
   }
 
-  <button (click)="onSubmit()" class="submit-btn">Analyze</button>
+  <button (click)="onSubmit()" class="submit-btn" [disabled]="isAnalyzing()">
+    @if (isAnalyzing()){ Analyzing... }@else{ Analyze }
+  </button>
 </div>

@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { SlideService } from '../../services/slide.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-label-selector',
@@ -18,10 +20,9 @@ export class LabelSelectorComponent {
     'rgb(255, 165, 0)', // Orange
     'rgb(255, 0, 0)', // Red
   ];
-
-  selectedButton: WritableSignal<number | null> = signal(null);
+  private slideService = inject(SlideService)
+  selectedButton = toSignal(this.slideService.getLabel())
   onButtonClick(label: number) {
-    if (this.selectedButton() !== label) this.selectedButton.set(label);
-    else this.selectedButton.set(null);
+    this.slideService.setLabel(label)
   }
 }
