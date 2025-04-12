@@ -1,5 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal, Signal, WritableSignal } from '@angular/core';
+import {
+  computed,
+  inject,
+  Injectable,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import { BehaviorSubject, concatMap, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { WsiListResponse } from '../models/wsi-list-response';
@@ -53,7 +60,7 @@ export class SlideService {
       .subscribe((res: AttentionResult) => {
         this.isAnalyzing.next(false);
         this.result.set(res);
-        this.label.next(this.result()?.label ?? null)
+        this.label.next(this.result()?.label ?? null);
       });
   }
   setSelectedSlide(slideID: string | null) {
@@ -72,5 +79,8 @@ export class SlideService {
     if (this.label.value != null) {
       this.label.next(newLabel);
     }
+  }
+  getProbalities() {
+    return computed(() => this.result()?.probabilities ?? null);
   }
 }

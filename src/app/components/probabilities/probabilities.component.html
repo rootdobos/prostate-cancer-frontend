@@ -1,0 +1,15 @@
+@if (probabilities() != null){
+<div class="probabilities">
+  <h2>Probabilities</h2>
+  <div class="probabilities-container">
+    @for (probability of probabilities(); track $index){
+    <div
+      class="probability"
+      [ngStyle]="{ borderColor: probabilityColors[$index] }"
+    >
+      {{ probability | number : "1.3-3" }}
+    </div>
+    }
+  </div>
+</div>
+}

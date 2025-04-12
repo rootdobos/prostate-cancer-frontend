@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { SlideSelectorComponent } from './components/slide-selector/slide-selector.component';
 import { LabelSelectorComponent } from './components/label-selector/label-selector.component';
 import { SlideViewerComponent } from './components/slide-viewer/slide-viewer.component';
+import { ProbabilitiesComponent } from './components/probabilities/probabilities.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SlideSelectorComponent, LabelSelectorComponent, SlideViewerComponent, RouterOutlet],
+  imports: [SlideSelectorComponent, LabelSelectorComponent, SlideViewerComponent,ProbabilitiesComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
