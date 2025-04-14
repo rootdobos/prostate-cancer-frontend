@@ -6,10 +6,11 @@ import { SlideSelectorComponent } from './components/slide-selector/slide-select
 import { LabelSelectorComponent } from './components/label-selector/label-selector.component';
 import { SlideViewerComponent } from './components/slide-viewer/slide-viewer.component';
 import { ProbabilitiesComponent } from './components/probabilities/probabilities.component';
+import { ImageCellScalerComponent } from './components/image-cell-scaler/image-cell-scaler.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SlideSelectorComponent, LabelSelectorComponent, SlideViewerComponent,ProbabilitiesComponent, RouterOutlet],
+  imports: [SlideSelectorComponent, LabelSelectorComponent, SlideViewerComponent,ProbabilitiesComponent, ImageCellScalerComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

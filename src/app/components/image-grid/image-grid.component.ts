@@ -12,7 +12,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ImageGridComponent {
   private slideService = inject(SlideService);
   visualizationData = toSignal(this.slideService.getImageGridData());
-
+  cellSize = toSignal( this.slideService.getCellSize())
+  
   getImageAt(row: number, col: number): string | null {
     var cacheBuster = Date.now();
     var data =

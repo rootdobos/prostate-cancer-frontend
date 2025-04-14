@@ -1,11 +1,14 @@
 @if (visualizationData() !=null){
 
-<!-- <div class="grid" [style.gridTemplateColumns]="'repeat(' + maxCol + ', 1fr)'"> -->
 <div class="grid">
-  @for (col of getColRange();track col){ @for (row of getRowRange();track row){
-  <div class="cell">
-    <img [attr.src]="getImageAt(row, col)" alt="img" />
+  @for (row of getRowRange();track row){
+  <div class="grid-row">
+    @for (col of getColRange();track col){
+    <div class="cell" [style.width.px]="cellSize()" [style.height.px]="cellSize()">
+      <img [attr.src]="getImageAt(row, col)" alt="img" />
+    </div>
+    }
   </div>
-  } }
+  }
 </div>
 }

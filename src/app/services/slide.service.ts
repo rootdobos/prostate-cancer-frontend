@@ -31,7 +31,7 @@ export class SlideService {
     new BehaviorSubject<ImageGridData | null>(null);
 
   private result: WritableSignal<AttentionResult | null> = signal(null);
-
+  private cellSize$: BehaviorSubject<number> = new BehaviorSubject<number>(100);
   getSlides(): Observable<WsiListResponse> {
     var endpoint = [this.baseUrl, 'slides/'].join('/');
     return this.http.get<WsiListResponse>(endpoint);
@@ -106,5 +106,11 @@ export class SlideService {
   }
   getImageGridData() {
     return this.imageGridData$;
+  }
+  getCellSize(){
+    return this.cellSize$
+  }
+  setCellSize(size:number){
+    this.cellSize$.next(size)
   }
 }
