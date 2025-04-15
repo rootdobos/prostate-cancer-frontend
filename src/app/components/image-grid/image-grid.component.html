@@ -1,6 +1,6 @@
 @if (visualizationData() !=null){
 
-<div class="grid">
+<div class="grid" [style.width.px]="gridWidth()" [style.height.px]="gridHeight()">
   @for (row of getRowRange();track row){
   <div class="grid-row">
     @for (col of getColRange();track col){

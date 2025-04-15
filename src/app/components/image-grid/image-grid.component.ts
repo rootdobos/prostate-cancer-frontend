@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { SlideService } from '../../services/slide.service';
 import { environment } from '../../../environments/environment.development';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -12,8 +12,17 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ImageGridComponent {
   private slideService = inject(SlideService);
   visualizationData = toSignal(this.slideService.getImageGridData());
-  cellSize = toSignal( this.slideService.getCellSize())
-  
+  cellSize = toSignal(this.slideService.getCellSize());
+  gridHeight = computed(() => {
+    var minY = this.visualizationData()?.minY ?? 0;
+    var rowCount = this.visualizationData()?.rowCount ?? 0;
+    return (rowCount - minY + 1) * (this.cellSize() ?? 0);
+  });
+  gridWidth = computed(() => {
+    var minX = this.visualizationData()?.minX ?? 0;
+    var columnCount = this.visualizationData()?.columnCount ?? 0;
+    return (columnCount - minX + 1) * (this.cellSize() ?? 0);
+  });
   getImageAt(row: number, col: number): string | null {
     var cacheBuster = Date.now();
     var data =
