@@ -1,14 +1,25 @@
 @if (visualizationData() !=null){
-
-<div class="grid" [style.width.px]="gridWidth()" [style.height.px]="gridHeight()">
-  @for (row of getRowRange();track row){
-  <div class="grid-row">
-    @for (col of getColRange();track col){
-    <div class="cell" [style.width.px]="cellSize()" [style.height.px]="cellSize()">
-      <img [attr.src]="getImageAt(row, col)" alt="img" />
+<div class="grid-wrapper"
+[style.width.px]="gridWidth()"
+[style.height.px]="gridHeight()+32">
+  <div
+    class="grid"
+    [style.width.px]="gridWidth()"
+    [style.height.px]="gridHeight()"
+  >
+    @for (row of getRowRange();track row){
+    <div class="grid-row">
+      @for (col of getColRange();track col){
+      <div
+        class="cell"
+        [style.width.px]="cellSize()"
+        [style.height.px]="cellSize()"
+      >
+        <img [attr.src]="getImageAt(row, col)" alt="img" />
+      </div>
+      }
     </div>
     }
   </div>
-  }
 </div>
 }

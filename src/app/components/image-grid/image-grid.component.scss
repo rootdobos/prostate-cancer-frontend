@@ -1,22 +1,25 @@
-.grid {
-  display: grid;
-  gap: 0;
-  border-radius: 6px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  .grid-row {
-    display: flex;
-    .cell {
-      width: 100px;
-      height: 100px;
-      background-color: #eee;
+.grid-wrapper {
+  padding-right: 32px;
+  .grid {
+    display: grid;
+    gap: 0;
+    border-radius: 6px;
+    border: 3px solid #ccc;
+    .grid-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      .cell {
+        width: 100px;
+        height: 100px;
+        background-color: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
       }
     }
   }
