@@ -14,6 +14,7 @@
         class="cell"
         [style.width.px]="cellSize()"
         [style.height.px]="cellSize()"
+        (click)="tileViewer.openViewer(getSlideId(), col, row)"
       >
         <img [attr.src]="getImageAt(row, col)" alt="img" />
       </div>
@@ -22,4 +23,6 @@
     }
   </div>
 </div>
+<app-tile-viewer #tileViewer></app-tile-viewer>
 }
+

@@ -107,10 +107,21 @@ export class SlideService {
   getImageGridData() {
     return this.imageGridData$;
   }
-  getCellSize(){
-    return this.cellSize$
+  getCellSize() {
+    return this.cellSize$;
   }
-  setCellSize(size:number){
-    this.cellSize$.next(size)
+  setCellSize(size: number) {
+    this.cellSize$.next(size);
+  }
+  getTile(slideId: string, col: number, row: number): Observable<Blob> {
+    var endpoint = [this.baseUrl, 'tiles', 'get_tile'].join('/');
+    return this.http.get(endpoint, {
+      responseType: 'blob',
+      params: {
+        slideId: slideId,
+        col: col,
+        row: row,
+      },
+    });
   }
 }
