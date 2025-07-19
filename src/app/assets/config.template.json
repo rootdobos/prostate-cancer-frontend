@@ -1,0 +1,18 @@
+{
+"prod": false,
+"apiServerDev": {
+"url": "http://127.0.0.1:8000",
+"images":{
+    "dir": "http://127.0.0.1:8000/images",
+    "placeholder": "http://127.0.0.1:8000/images/placeholder.jpg"
+}
+},
+
+"apiServerProd": {
+"url": "${BACKEND_URL}",
+"images":{
+    "dir": "${IMAGES_URL}",
+    "placeholder": "${PLACEHOLDER_IMAGE}"
+}
+}
+}

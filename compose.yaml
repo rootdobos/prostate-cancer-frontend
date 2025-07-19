@@ -12,7 +12,10 @@ services:
     build:
       context: .
     environment:
-      NODE_ENV: production
+      - NODE_ENV=production
+      - IMAGES_URL=http://127.0.0.1:8000/images
+      - PLACEHOLDER_IMAGE=http://127.0.0.1:8000/images/placeholder.jpg
+      - BACKEND_URL=http://127.0.0.1:8000
     ports:
       - 4200:8080
 
