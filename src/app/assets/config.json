@@ -1,0 +1,9 @@
+{
+"apiServer": {
+"url": "http://127.0.0.1:8000"
+},
+"images":{
+    "dir": "http://127.0.0.1:8000/images",
+    "placeholder": "http://127.0.0.1:8000/images/placeholder.jpg"
+}
+}

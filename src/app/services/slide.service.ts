@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, concatMap, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import configurl from '../assets/config.json';
 import { WsiListResponse } from '../models/wsi-list-response';
 import { AttentionResult } from '../models/attention-result';
 import { ImageGridData } from '../models/image-grid-data';
@@ -17,7 +18,7 @@ import { ImageGridData } from '../models/image-grid-data';
   providedIn: 'root',
 })
 export class SlideService {
-  private baseUrl = environment.backend_url;
+  private baseUrl = configurl.apiServer.url;
   private http = inject(HttpClient);
   private selectedSlide$: BehaviorSubject<string | null> = new BehaviorSubject<
     string | null

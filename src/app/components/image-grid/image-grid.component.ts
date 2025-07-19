@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { SlideService } from '../../services/slide.service';
 import { environment } from '../../../environments/environment.development';
+import configurl from '../../assets/config.json';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TileViewerComponent } from '../tile-viewer/tile-viewer.component';
 @Component({
@@ -35,11 +36,11 @@ export class ImageGridComponent {
       ) || null;
     if (data)
       return (
-        [environment.images_url, 'visualization', data.path].join('/') +
+        [configurl.images.dir, 'visualization', data.path].join('/') +
         '?t=' +
         cacheBuster
       );
-    return environment.placeholder_image;
+    return configurl.images.placeholder;
   }
   getColRange(): number[] {
     var minX = this.visualizationData()?.minX ?? 0;
