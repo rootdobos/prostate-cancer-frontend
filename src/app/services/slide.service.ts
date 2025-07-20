@@ -8,17 +8,19 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { BehaviorSubject, concatMap, Observable } from 'rxjs';
-import { environment } from '../../environments/environment.development';
-import configurl from '../assets/config.json';
+import { environment } from '../../environments/environment';
+// import configurl from '../assets/config.json';
 import { WsiListResponse } from '../models/wsi-list-response';
 import { AttentionResult } from '../models/attention-result';
 import { ImageGridData } from '../models/image-grid-data';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SlideService {
-  private baseUrl = configurl.apiServer.url;
+  private configService = inject(ConfigService)
+  private baseUrl = this.configService.getConfig().backend_url;
   private http = inject(HttpClient);
   private selectedSlide$: BehaviorSubject<string | null> = new BehaviorSubject<
     string | null

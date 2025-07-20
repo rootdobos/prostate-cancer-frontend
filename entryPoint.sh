@@ -1,4 +1,8 @@
-envsubst < /usr/share/nginx/html/assets/config.template.json > /usr/share/nginx/html/assets/config.json && exec 
+#!/bin/sh
+set -e
 
+echo "Writing config.json..."
 
-nginx -c '/etc/nginx/nginx.conf' -g 'daemon off;'
+echo "{\"backend_url\": \"$BACKEND_URL\", \"placeholder_image\": \"$PLACEHOLDER_IMAGE\", \"images_url\": \"$IMAGES_URL\"}" > /usr/share/nginx/html/config.json
+
+exec nginx -c /etc/nginx/nginx.conf -g 'daemon off;'

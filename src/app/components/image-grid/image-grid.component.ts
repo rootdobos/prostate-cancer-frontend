@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { SlideService } from '../../services/slide.service';
-import { environment } from '../../../environments/environment.development';
-import configurl from '../../assets/config.json';
+import { environment } from '../../../environments/environment';
+// import configurl from '../../assets/config.json';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TileViewerComponent } from '../tile-viewer/tile-viewer.component';
+import { ConfigService } from '../../services/config.service';
 @Component({
   selector: 'app-image-grid',
   imports: [CommonModule, TileViewerComponent],
@@ -12,6 +13,7 @@ import { TileViewerComponent } from '../tile-viewer/tile-viewer.component';
   styleUrl: './image-grid.component.scss',
 })
 export class ImageGridComponent {
+  private configService = inject(ConfigService);
   private slideService = inject(SlideService);
   visualizationData = toSignal(this.slideService.getImageGridData());
   cellSize = toSignal(this.slideService.getCellSize());
@@ -36,11 +38,11 @@ export class ImageGridComponent {
       ) || null;
     if (data)
       return (
-        [configurl.images.dir, 'visualization', data.path].join('/') +
+        [this.configService.getConfig().images_url, 'visualization', data.path].join('/') +
         '?t=' +
         cacheBuster
       );
-    return configurl.images.placeholder;
+    return this.configService.getConfig().placeholder_image;
   }
   getColRange(): number[] {
     var minX = this.visualizationData()?.minX ?? 0;

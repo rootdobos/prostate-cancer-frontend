@@ -26,21 +26,28 @@ RUN npm run build
 # Stage 2: Prepare Nginx to Serve Static Files
 # =========================================
 
-FROM nginxinc/nginx-unprivileged:${NGINX_VERSION} AS runner
+FROM nginx:alpine AS runner
 
-# Use a built-in non-root user for security best practices
-USER nginx
+USER root
 
 # Copy custom Nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the static build output from the build stage to Nginx's default HTML serving directory
-COPY --chown=nginx:nginx --from=builder /app/dist/*/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/*/browser /usr/share/nginx/html
 
-# Expose port 8080 to allow HTTP traffic
-# Note: The default NGINX container now listens on port 8080 instead of 80 
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 8080
 
-# Start Nginx directly with custom config
-ENTRYPOINT ["nginx", "-c", "/etc/nginx/nginx.conf"]
-CMD ["-g", "daemon off;"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
+
+# # Expose port 8080 to allow HTTP traffic
+# # Note: The default NGINX container now listens on port 8080 instead of 80 
+
+
+# # Start Nginx directly with custom config
+# ENTRYPOINT ["nginx", "-c", "/etc/nginx/nginx.conf"]
+# CMD ["-g", "daemon off;"]
