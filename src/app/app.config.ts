@@ -3,9 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import {  provideHttpClient, withFetch, withJsonpSupport } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
-import { environment } from '../environments/environment.development';
-import { tap } from 'rxjs/operators';
+
 import { ConfigService } from './services/config.service';
 
 export const appConfig: ApplicationConfig = {
