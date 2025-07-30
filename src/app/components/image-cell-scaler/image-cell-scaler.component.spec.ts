@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImageCellScalerComponent } from './image-cell-scaler.component';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ImageCellScalerComponent', () => {
   let component: ImageCellScalerComponent;
@@ -8,7 +10,11 @@ describe('ImageCellScalerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageCellScalerComponent]
+      imports: [ImageCellScalerComponent],
+            providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     })
     .compileComponents();
 

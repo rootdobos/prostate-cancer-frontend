@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LabelSelectorComponent } from './label-selector.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('LabelSelectorComponent', () => {
   let component: LabelSelectorComponent;
@@ -8,7 +10,11 @@ describe('LabelSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LabelSelectorComponent]
+      imports: [LabelSelectorComponent],
+            providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     })
     .compileComponents();
 

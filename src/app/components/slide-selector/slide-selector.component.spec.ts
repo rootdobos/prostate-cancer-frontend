@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideSelectorComponent } from './slide-selector.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('SlideSelectorComponent', () => {
   let component: SlideSelectorComponent;
@@ -8,7 +10,11 @@ describe('SlideSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SlideSelectorComponent]
+      imports: [SlideSelectorComponent],
+            providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideViewerComponent } from './slide-viewer.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('SlideViewerComponent', () => {
   let component: SlideViewerComponent;
@@ -8,7 +10,11 @@ describe('SlideViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SlideViewerComponent]
+      imports: [SlideViewerComponent],
+            providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     })
     .compileComponents();
 
